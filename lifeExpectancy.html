@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Life Expectancy</title>
+
+	<script type="text/javascript">
+		function Person (name, age, gender)
+			{
+				this.name = name;
+				this.age = age;
+				this.gender = gender;
+				this.life_expect = function(){
+					if(this.gender == "m" || this.gender == "M")
+					{
+						document.write("Hi, " + this.name + ". As a " + this.age + " year old man, you are expected to live " + (76-this.age) + " more years!");
+					}//end life_expect for male
+					else
+					{
+						document.write("Hi, " + this.name + ". As a " + this.age + " year old woman, you are expected to live " + (81-this.age) + " more years!");
+					}//end else life_expect for female
+				}//end life_expect method
+			}//end Person constructor
+
+		//displayInOut function accepts user inputs and outputs for the program
+		function displayInOut()
+		{
+			//display main heading
+			document.write("<h1>Browser Settings:</h1>");
+			//note saying if java is enabled 
+			if(navigator.javaEnabled()){
+				document.write("Java is enabled!<br>");
+			}//end java is enabled
+			else
+			{
+				document.write("Java is not enabled.<br>");
+			}//end java is not enabled
+			//write platform name
+			document.write("Browser platform:" + navigator.platform + "<br>");
+			//write appCodeName
+			document.write("Browser code name: " + navigator.appCodeName + "<br>");
+			//write appName
+			document.write("Browser name: " + navigator.appName + "<br>");
+			//write version
+			document.write("Browser version: " + navigator.appVersion + "<br>");
+
+
+			//use prompts to request user inputs 
+			let inputUserName = prompt("Please enter your full name:");
+			let inputAge = prompt("Please enter your age:");
+			let inputGender = prompt("Please enter your gender (M or F):").toUpperCase();
+			//while loop checking that gender was entered correctly
+			while(inputGender != "M" &&  inputGender != "F")
+			{
+				alert("Error! This is not a correct input. Please enter either M or F:");
+				inputGender = prompt("Please enter your gender (M or F):").toUpperCase();
+			}//end while loop for gender
+
+			//create new instance of Person class named myPerson
+			let myPerson = new Person(inputUserName, inputAge, inputGender);
+			
+			//display myPerson's properties
+			document.write("<br>Person's Properties:<br>");
+			document.write(myPerson.name + "<br>");
+			document.write(myPerson.gender + "<br>");
+			document.write(myPerson.age + "<br>");
+
+			//call life_expect method
+			myPerson.life_expect();
+		}//end displayInOut function
+	</script>
+</head>
+<body style="background-color: violet;">
+<script type="text/javascript">
+	displayInOut();
+</script>
+</body>
+</html>
